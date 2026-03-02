@@ -2,16 +2,8 @@ import axios from 'axios';
 import React from 'react'
 
 import { useEffect, useState } from 'react'
-import { Form, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-type Props = {
-    _id: any;
-    Bookname: string;
-    Bookdetail: string;
-    BookPrice: number;
-    file: string;
-    shotstory: string;
-}
 
 const SetNewData = () => {
     const [update, setupdate] = useState<{ [key: string]: string | File }>()
@@ -20,7 +12,7 @@ const SetNewData = () => {
     console.log(param)
     const Getdata =async ()  =>{
         axios
-        .get('http://localhost:1234/store/some/' + param.id)
+        .get(`${import.meta.env.VITE_API_URL}/store/some/` + param.id)
         .then((res) => {
             setupdate(res.data);
             fileold(res.data.file)
@@ -61,7 +53,7 @@ const SetNewData = () => {
             goimage.append('fileold', file); // ใส่ fileold ในกรณีที่ file มีค่า
         }
         axios
-            .put('http://localhost:1234/store/some/' + param.id, goimage)
+            .put(`${import.meta.env.VITE_API_URL}/store/some/` + param.id, goimage)
             .then((res) => {
                 console.log(res.data);
             })

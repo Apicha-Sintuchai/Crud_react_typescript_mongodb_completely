@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 type Props = {
@@ -14,7 +14,7 @@ type Props = {
 
 const FormPost = () => {
     const [post, setpost] = useState<{ [key: string]: string | File }>({})
-    const url = 'http://localhost:1234/store/some'
+    const url = `${import.meta.env.VITE_API_URL}/store/some`
     //:React.ChangeEvent<HTMLInputElement>
     const onchange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -46,7 +46,7 @@ const FormPost = () => {
         getdata()
     }
     const remove = async (id: any) => {
-        axios.delete('http://localhost:1234/store/some/' + id).then((res) => {
+        axios.delete(`${import.meta.env.VITE_API_URL}/store/some/` + id).then((res) => {
             console.log(res)
         }).then((err) => {
             console.log(err)
@@ -55,7 +55,7 @@ const FormPost = () => {
 
     }
     const getdata = async () => {
-        axios.get('http://localhost:1234/store/some').then((res) => {
+        axios.get(`${import.meta.env.VITE_API_URL}/store/some`).then((res) => {
             console.log(res)
             setread(res.data)
         }).catch((err) => {

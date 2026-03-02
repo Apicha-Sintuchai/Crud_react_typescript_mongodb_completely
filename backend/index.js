@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const {readFileSync, readdirSync} = require('fs');
@@ -16,7 +17,7 @@ creatconnect()
 
 readdirSync('./path').map((looppath) => app.use('/store', require('./path/' + looppath)))
 
-const port = 1234
+const port = process.env.PORT || 1234
 app.listen(port, () => {
     console.log("server running")
 })

@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const creatconnect = async () => {
-    await mongoose.connect('mongodb://127.0.0.1:27017/Bookstore')
+    await mongoose.connect(process.env.MONGO_URI)
     console.log('mongoose connect')
-    
 }
 
 module.exports = creatconnect

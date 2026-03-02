@@ -1,0 +1,25 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: crud_backend
+    env_file:
+      - ./backend/.env
+    volumes:
+      - picsave_data:/app/Picsave
+    ports:
+      - "1234:1234"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./tscpg_ui/FrontEnd
+    container_name: crud_frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  picsave_data:

@@ -15,7 +15,7 @@ type Props = {
 
 const ShopBook = () => {
   function getdata() {
-    axios.get('http://localhost:1234/store/some').then((res) => {
+    axios.get(`${import.meta.env.VITE_API_URL}/store/some`).then((res) => {
       console.log(res)
       setread(res.data)
     }).catch((err) => {
@@ -31,7 +31,7 @@ const ShopBook = () => {
   return (
     <div className='flex flex-wrap  flex-row'>{read ? read.map((res, index) => (       
       <div className="card w-96 bg-base-100 shadow-xl " key={index}>
-        <figure><img src={'http://localhost:1234/Picsave/' + res.file} alt="" /></figure>
+        <figure><img src={`${import.meta.env.VITE_API_URL}/Picsave/${res.file}`} alt="" /></figure>
         <div className="card-body">
           <h2 className="card-title">{res.Bookname}!</h2>
           <p>{res.Bookdetail}</p>
